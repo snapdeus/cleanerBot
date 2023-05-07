@@ -13,10 +13,13 @@ module.exports = {
         .addNumberOption(option =>
             option.setName('amount')
                 .setDescription('Amount of messages to delete')
+                .setMaxValue(100)
 
         ),
     async execute(interaction) {
         let amount = interaction.options.getNumber("amount") || 1;
+
+
         let deletedCount = 0;
         await interaction.channel.messages.fetch({ limit: 100 }).then(async (msgCollection) => {
             await interaction.deferReply();
